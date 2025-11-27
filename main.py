@@ -287,19 +287,19 @@ def compare_strategies():
         print(f"{strategy_name:<15} {int(stats['total_time']):<20} "
               f"{stats['total_seeks']:<10} {stats['total_seek_time']:<15.2f}")
 
-# TODO fix names
+
 def main():
     print("Available scenarios:")
-    print("1. Simple read operation")
-    print("2. Simple write operation")
-    print("3. Two processes, different sectors")
-    print("4. Two processes, same sector (cache hit)")
-    print("5. Multiple operations, cache eviction")
-    print("6. LOOK strategy demonstration")
-    print("7. LOOK strategy, complex scenario")
-    print("7. LOOK strategy, complex scenario")
-    print("8. ")
-    print("9. ")
+    print("1. Sector 100 read operation (FIFO)")
+    print("2. Sector 100 modification operation (FIFO)")
+    print("3. Sector 100 read, sector 1000 modification (FIFO)")
+    print("4. Sector 100 read two processes (FIFO)")
+    print("5. Insufficient amount of buffers for all the blocks (FIFO)")
+    print("6. Sector 100 read and write by different processes (LOOK track_read_max 1)")
+    print("7. Sectors 100, 110, 1500 read by different processes (LOOK track_read_max 1)")
+    print("8. Sectors 100, 110, 1500 read by different processes (LOOK track_read_max 2)")
+    print("9. Four processes with different operations (NLOOK num 10)")
+    print("0. Compare FIFO, LOOK, and NLOOK in complex situation")
     print()
 
     choice = input("Select scenario (1-9): ").strip()
