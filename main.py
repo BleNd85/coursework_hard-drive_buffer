@@ -183,7 +183,7 @@ def scenario_7_look_three_read_max_1():
 def scenario_8_look_three_read_max_2():
     # Scenario 8 LOOK three read processes track_read_max 2
     print("=" * 70)
-    print("SCENARIO 7: Three processes r 100, 110, 1500 (LOOK track_read_max 2)")
+    print("SCENARIO 8: Three processes r 100, 110, 1500 (LOOK track_read_max 2)")
     print("=" * 70)
     print()
 

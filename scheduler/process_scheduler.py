@@ -12,7 +12,7 @@ class ProcessScheduler:
 
     def __init__(self, config):
         self.config = config
-        self.quantum_time = config.QUANTUM_TIME  # мкс
+        self.quantum_time = config.QUANTUM_TIME  # us
 
         # Queue of ready processes (READY)
         self.ready_queue: deque[Process] = deque()
