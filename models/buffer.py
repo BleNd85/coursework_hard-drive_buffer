@@ -13,6 +13,9 @@ class Buffer:
         self.access_counter = 0
         self.last_access_time = 0
 
+        # For I/O operation
+        self.io_operation = None # READ or WRITE
+
     def load_sector(self, sector_num: int, track_num: int, data=None):
         # Loads sector into buffer
         self.sector_num = sector_num
@@ -25,7 +28,7 @@ class Buffer:
         # Marks buffer as modified
         self.modified = True
 
-    def increment_counter(self):
+    def increment_access(self):
         # Increments hit counter (for LFU)
         self.access_counter += 1
 
