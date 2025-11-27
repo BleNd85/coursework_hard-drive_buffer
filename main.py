@@ -112,11 +112,11 @@ def scenario_5_multiple_operations():
     simulator = Simulator(config, FIFOStrategy)
 
     operations = [
-        ('r', 100),
+        ('w', 100),
         ('r', 110),
         ('r', 120),
         ('r', 130),
-        ('r', 140),
+        ('w', 140),
         ('r', 150),
         ('r', 160),
         ('r', 170),
