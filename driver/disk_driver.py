@@ -49,15 +49,19 @@ class DiskDriver:
         self._print_best_move_decision(next_buffer)
 
         # Calculates operation completion time
-        completion_time = self._calculate_io_time(next_buffer, operation, current_time)
+        io_duration = self._calculate_io_duration(next_buffer, operation)
+        completion_time = current_time + io_duration
 
         # Saves current operation
         self.current_operation = (next_buffer, operation, completion_time)
 
+        print(f"DRIVER: Started I/O ({operation}) for buffer {next_buffer}, "
+              f"will complete at {int(completion_time)} us")
+
         return (next_buffer, operation, completion_time)
 
-    def _calculate_io_time(self, buffer: Buffer, operation: str, current_time: float) -> float:
-        # Calculates I/O completion time
+    def _calculate_io_duration(self, buffer: Buffer, operation: str) -> float:
+
         # Travel time to the track
         target_track = self.disk.get_track_for_sector(buffer.sector_num)
         seek_time = self.disk.seek_to_track(target_track)
@@ -72,9 +76,7 @@ class DiskDriver:
         total_time_ms = seek_time + rotational_delay + transfer_time
         total_time_us = total_time_ms * 1000
 
-        completion_time = current_time + total_time_us
-
-        return completion_time
+        return total_time_us
 
     def _print_best_move_decision(self, buffer: Buffer):
         # Displays information about the best way to move the mechanism

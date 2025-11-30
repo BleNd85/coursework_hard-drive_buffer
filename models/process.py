@@ -16,6 +16,11 @@ class Process:
         self.remaining_quantum = 0
         self.blocked_on_sector = None
 
+        self.syscall_remaining_time = 0
+        self.syscall_in_progress = None
+        self.before_write_remaining_time = 0
+        self.after_read_remaining_time = 0
+
     def get_next_operation(self) -> tuple[str, int] | None:
         # Returns next operation
         if self.current_op_index < len(self.operations):
@@ -25,6 +30,10 @@ class Process:
     def advance_operation(self):
         # Goes to the next operation
         self.current_op_index += 1
+        self.syscall_remaining_time = 0
+        self.syscall_in_progress = None
+        self.before_write_remaining_time = 0
+        self.after_read_remaining_time = 0
 
     def is_finished(self) -> bool:
         # Checks if the process ended all operations
@@ -32,4 +41,4 @@ class Process:
 
     def __repr__(self):
         ops_str = ', '.join([f"{{'{op}',{sec}}}" for op, sec in self.operations])
-        return f"{{{ops_str}}}"
+        return f"[{ops_str}]"
