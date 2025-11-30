@@ -209,11 +209,13 @@ def scenario_8_look_three_read_max_2():
 def scenario_9_nlook_complex_processes():
     # Scenario 9 NLOOK complex processes
     print("=" * 70)
-    print("SCENARIO 7: Four processes (NLOOK num 10)")
+    print("SCENARIO 9: Four processes (NLOOK num 10)")
     print("=" * 70)
     print()
 
     config = SystemConfig()
+    config.SYSCALL_READ_TIME = 50000
+    config.SYSCALL_WRITE_TIME = 50000
     print_header("LFU (3 segments)", "NLOOK (num 10)")
 
     simulator = Simulator(config, NLOOKStrategy)
